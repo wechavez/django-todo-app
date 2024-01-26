@@ -17,3 +17,11 @@ def tasks(request):
     Task.objects.create(title=title)
 
     return redirect('index')
+  
+
+def complete(request, id):
+  task = Task.objects.get(id=id)
+  task.completed = not task.completed
+  task.save()
+
+  return redirect('index')
