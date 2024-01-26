@@ -25,3 +25,9 @@ def complete(request, id):
   task.save()
 
   return redirect('index')
+
+def delete(request, id):
+  task = Task.objects.get(id=id)
+  task.delete()
+
+  return redirect('index')
