@@ -1,5 +1,4 @@
-{% extends 'layouts/base.html' %} 
-{% block content %}
+{% extends 'layouts/base.html' %} {% block content %}
 <body class="antialiased bg-slate-200 text-slate-700 mx-2">
   <div
     class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300"
@@ -10,11 +9,11 @@
     </p>
 
     <form class="my-5" method="POST">
-      
+      {% csrf_token %}
 
       <div class="flex items-center gap-2">
         <div class="flex-1">
-          
+          {{ form }}
         </div>
   
         <button
@@ -40,13 +39,13 @@
     </form>
 
     <div id="tasks" class="my-5">
-      
+      {% for task in tasks %}
       <div
         class="flex justify-between items-center border-b border-slate-200 py-3 px-2 border-l-4 border-l-transparent {% if task.completed == False %} bg-gradient-to-r from-transparent to-transparent hover:from-slate-100 transition ease-linear duration-150 {% endif %}"
       >
         <div class="inline-flex items-center space-x-2">
           <form action="/complete/{{ task.id }}" method="POST">
-            
+            {% csrf_token %}
             <button type="submit">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -68,12 +67,12 @@
           <div
             class="{% if task.completed %} text-slate-500 line-through {% endif %}"
           >
-            
+            {{ task.title }}
           </div>
         </div>
 
         <form action="/delete/{{ task.id }}">
-          
+          {% csrf_token %}
           <button type="submit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +93,7 @@
 
         
       </div>
-      
+      {% endfor %}
     </div>
     
     <p class="text-xs text-slate-500 text-center">
