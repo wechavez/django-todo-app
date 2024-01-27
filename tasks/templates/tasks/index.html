@@ -15,7 +15,7 @@
         <div class="flex-1">
           {{ form }}
         </div>
-  
+
         <button
           class="bg-indigo-600 rounded-full w-8 h-8 flex justify-center items-center flex-shrink-0 hover:bg-indigo-700 transition ease-linear duration-150"
         >
@@ -44,7 +44,7 @@
         class="flex justify-between items-center border-b border-slate-200 py-3 px-2 border-l-4 border-l-transparent {% if task.completed == False %} bg-gradient-to-r from-transparent to-transparent hover:from-slate-100 transition ease-linear duration-150 {% endif %}"
       >
         <div class="inline-flex items-center space-x-2">
-          <form action="/complete/{{ task.id }}" method="POST">
+          <form action="/complete/{{ task.id }}" method="POST" class="flex items-center">
             {% csrf_token %}
             <button type="submit">
               <svg
@@ -71,7 +71,7 @@
           </div>
         </div>
 
-        <form action="/delete/{{ task.id }}">
+        <form action="/delete/{{ task.id }}" class="flex items-center">
           {% csrf_token %}
           <button type="submit">
             <svg
@@ -91,11 +91,11 @@
           </button>
         </form>
 
-        
+
       </div>
       {% endfor %}
     </div>
-    
+
     <p class="text-xs text-slate-500 text-center">
       Desarrollado por Grupo 4
     </p>
